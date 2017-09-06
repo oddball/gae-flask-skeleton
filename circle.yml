@@ -1,0 +1,20 @@
+machine:
+    timezone:
+        Europe/Stockholm
+    environment:
+      # Add app engine sdk to pythonpath for local unit tests.
+      PYTHONPATH: ${PYTHONPATH}:${HOME}/google_appengine
+
+dependencies:
+    pre:
+        # Download App Engine SDK
+        - curl -o $HOME/google_appengine_1.9.56.zip https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.56.zip
+        - unzip -q -d $HOME $HOME/google_appengine_1.9.56.zip
+        - make venv
+        - make install
+        - make config_test
+
+test:
+    override:
+        -  make test
+

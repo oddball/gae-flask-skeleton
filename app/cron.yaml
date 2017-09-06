@@ -1,0 +1,5 @@
+cron:
+- description: cron_job_trigger
+  url: /tqueue/cron_job_trigger
+  schedule: every 1 hours
+

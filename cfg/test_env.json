@@ -1,0 +1,10 @@
+{
+    "DEBUG": "True",
+    "TESTBED_ACTIVE": "True",
+    "NAMESPACE": "dev1",
+    "SECRET_KEY": "something_that_you_should_change",
+    "GOOGLE_SERVER_OAUTH_KEY": "COPY IT HERE",
+    "GOOGLE_SERVER_OAUTH_SECRET": "COPY IT HERE",
+    "ADMINS": "['example1@gmail.com', 'example2@gmail.com']"
+}
+

@@ -1,0 +1,11 @@
+*plugin.xml
+*.pyc
+*.pyo
+.*.swp
+.coverage
+cover
+/.idea/
+.DS_Store
+/venv/
+/app/settings.py
+/app/lib/*

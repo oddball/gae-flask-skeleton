@@ -1,0 +1,20 @@
+# -*- coding: utf-8 -*-
+# This is run though Jinja2, by typing make config
+
+import os
+import logging
+import datetime
+
+ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
+try:
+    from google.appengine.api import app_identity
+    BASE_URL = 'https://%s.appspot.com' % app_identity.get_application_id()
+except (ImportError, AttributeError):
+    BASE_URL = ''
+
+
+DEBUG = {{ cfg.DEBUG }}
+TESTBED_ACTIVE = {{ cfg.TESTBED_ACTIVE }}
+NAMESPACE = '{{ cfg.NAMESPACE }}'
+SECRET_KEY = '{{ cfg.SECRET_KEY }}'
+ADMINS = {{ cfg.ADMINS }}

@@ -1,0 +1,41 @@
+runtime: python27
+threadsafe: true
+api_version: 1
+
+libraries:
+- name: pycrypto
+  version: "2.6.1"
+- name: lxml
+  version: "2.3.5"
+- name: jinja2
+  version: "2.6"
+- name: webob
+  version: "1.2.3"
+- name: ssl
+  version: latest
+
+handlers:
+- url: /static/(.*\.(eot|svg|ttf|woff|woff2|mp3|html|css|js|gif|jpg|png|ico|txt|json))
+  static_files: web/static/\1
+  upload: web/static/(.*\.(eot|svg|ttf|woff|woff2|mp3|html|css|js|gif|jpg|png|ico|txt|json))
+  expiration: "1h"
+- url: /tqueue/.*
+  login: admin
+  script: main.application
+- url: /.*
+  script: main.application
+  secure: always
+
+builtins:
+- appstats: on
+- deferred: on
+env_variables:
+
+#Notice that test dir is skipped
+skip_files:
+- ^(.*/)?#.*#$
+- ^(.*/)?.*~$
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?.*/RCS/.*$
+- ^(.*/)?\..*$
+- ^test$

@@ -1,0 +1,59 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}Testbed{% endblock %}
+
+{% set navigation_bar = [
+    (url_for('testbed.testbed'), 'testbed', 'testbed')
+] %}
+
+
+{% set active_page = active_page|default('index') -%}
+
+{% block navbar %}
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{ url_for('testbed.testbed') }}">Testbed</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        {% for href, id, caption in navigation_bar %}
+          <li{% if id == active_page %} class="active"{% endif
+          %}><a href="{{ href|e }}">{{ caption|e }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div><!-- /.container-fluid -->
+</nav>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            <a class="close" data-dismiss="alert" href="#">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% endwith %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+</div>
+{% endblock %}
+

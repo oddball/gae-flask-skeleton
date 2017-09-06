@@ -1,0 +1,83 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}BackOffice{% endblock %}
+
+{% set navigation_bar = [
+    (url_for('backoffice.users'), 'users', 'users')
+] %}
+
+{% set active_page = active_page|default('index') -%}
+
+{% block navbar %}
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{ url_for('backoffice.backoffice') }}">BackOffice</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        {% for href, id, caption in navigation_bar %}
+          <li{% if id == active_page %} class="active"{% endif
+          %}><a href="{{ href|e }}">{{ caption|e }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          {% if current_user.is_authenticated %}
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ current_user.cn }}<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="{{ url_for('backoffice.logout') }}">Logout</a></li>
+            </ul>
+            </li>
+          </ul>
+          {% endif %}
+        </ul>
+    </div>
+
+
+</nav>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            <a class="close" data-dismiss="alert" href="#">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% endwith %}
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+</div>
+
+
+
+{% block javascript %}
+{% endblock %}
+
+{% endblock %}
