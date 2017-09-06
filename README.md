@@ -51,3 +51,4 @@ example of running single test
 ```
 venv/bin/nosetests -vv --nologcapture --nocapture app/test/tests/testcases.py -m test_backoffice
 ```
+
