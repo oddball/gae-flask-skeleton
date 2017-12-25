@@ -2,6 +2,8 @@
 # When changing, change app.yaml to
 flask-bootstrap==3.3.7.1
 flask_security==3.0.0
+Flask==0.12.2
+werkzeug==0.12.2
 WebOb==1.2.3
 good==0.0.7-0
 WebTest==2.0.28
