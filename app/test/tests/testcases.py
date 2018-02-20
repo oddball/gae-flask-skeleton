@@ -50,7 +50,7 @@ class Testcases(BaseTest):
             self.assertEqual(None, current_user)
             objs = JustToShow.query().fetch()
             self.assertEqual(len(objs), 0)
-            resp = c.get(
+            resp = c.post(
                 '/api/start_a_task',
             )
             self.assertEqual(httplib.OK, resp.status_code, msg=resp.data)

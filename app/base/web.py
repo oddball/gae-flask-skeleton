@@ -18,22 +18,22 @@ def create_app(name, *args, **kwargs):
     app.secret_key = settings.SECRET_KEY
     Bootstrap(app)
 
-    @app.before_request
-    def before_request():
-        try:
-            data = pformat(json.loads(request.data))
-        except:
-            data = str(request.data)
-        logging.debug('REQUEST\nHEADERS %s\nBODY %s', request.headers, data)
-
-    @app.after_request
-    def after_request(resp):
-        try:
-            data = pformat(json.loads(resp.data))
-        except:
-            data = str(resp.data)
-        logging.debug('RESPONSE\nHEADERS %s\nBODY %s', resp.headers, data)
-        return resp
+    # @app.before_request
+    # def before_request():
+    #     try:
+    #         data = pformat(json.loads(request.data))
+    #     except:
+    #         data = str(request.data)
+    #     logging.debug('REQUEST\nHEADERS %s\nBODY %s', request.headers, data)
+    #
+    # @app.after_request
+    # def after_request(resp):
+    #     try:
+    #         data = pformat(json.loads(resp.data))
+    #     except:
+    #         data = str(resp.data)
+    #     logging.debug('RESPONSE\nHEADERS %s\nBODY %s', resp.headers, data)
+    #     return resp
 
     app.debug = settings.DEBUG
 

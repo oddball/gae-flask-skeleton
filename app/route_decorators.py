@@ -8,12 +8,11 @@ import flask
 
 
 def user_required(func):
-
     @wraps(func)
     def wrapper(*args, **kw):
         if not current_user.is_authenticated:
-            logging.debug('not current_user.is_authenticated')
-            flask.abort(flask.make_response(flask.jsonify(message='UNAUTHORIZED'), httplib.UNAUTHORIZED))
+            #logging.error('current_user.is_authenticated is false')
+            flask.abort(httplib.UNAUTHORIZED, 'UNAUTHORIZED')
 
         return func(*args, **kw)
 
