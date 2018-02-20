@@ -25,6 +25,7 @@ application.jinja_loader = my_loader
 application.register_blueprint(slash_bp)
 application.register_blueprint(tq_bp, url_prefix='/tqueue')
 application.register_blueprint(api_bp, url_prefix='/api')
+
 application.register_blueprint(backoffice_bp, url_prefix='/backoffice')
 if settings.TESTBED_ACTIVE:
     from testbed import testbed_bp
